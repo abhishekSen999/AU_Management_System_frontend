@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Au-Management-System-frontend"
+    }
+  },
+  "defaultProject": "Au-Management-System-frontend",
+  "cli": {
+    "analytics": "0ba72993-88e0-4205-bf0f-a7d9749e0a49"
+  }
 }
