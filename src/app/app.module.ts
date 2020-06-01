@@ -8,7 +8,8 @@ import { FooterComponent } from './footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { ManagerHomeComponent } from './manager-home/manager-home.component';
 import { LoginComponent } from './login/login.component'
-
+import { AuthorizationService } from './authorization.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -22,9 +23,10 @@ import { LoginComponent } from './login/login.component'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AuthorizationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

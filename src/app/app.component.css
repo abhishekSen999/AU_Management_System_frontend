@@ -288,4 +288,11 @@
   }
 
   */
- 
+  button{
+    font-family: 'Roboto Slab', serif;
+  }
+
+ .app-root-container{
+  height: 100%;
+  font-family: 'Roboto Slab', serif;
+ }

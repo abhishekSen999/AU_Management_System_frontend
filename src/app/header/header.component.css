@@ -1,0 +1,15 @@
+.header {
+
+    width: 100%;
+    height: 100px;
+    background:#0d1b24;
+    
+}
+
+/* accolite logo */
+#main-logo{
+    background: transparent;
+    position: absolute;
+    top: 5%;
+    left: 2%;
+}
