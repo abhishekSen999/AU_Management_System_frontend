@@ -37,12 +37,26 @@ export class OnboardComponent implements OnInit {
     
 };
   public onboardList : any;
+
+
   public listFlag:boolean = false;
   public elementFlag: boolean = false;
   public operationSuccessfulFlag=false;
   public operationFailedFlag=false;
   public addFlag=false;
+  public noOboardsPresentFlag =false;
 
+  resetAllFlags()
+  {
+    this.listFlag= false
+    this.elementFlag= false;
+    this.operationSuccessfulFlag=false;
+    this.operationFailedFlag=false;
+    this.addFlag=false;
+    this.noOboardsPresentFlag =false;
+
+  }
+  
   constructor(public onboardService: OnboardService) { }
 
   ngOnInit(): void {
@@ -50,12 +64,12 @@ export class OnboardComponent implements OnInit {
 
   displayAdd()
   {
+    this.resetAllFlags();
     this.addFlag=true;
   }
   searchAll()
   {
-    this.addFlag=false;
-    this.elementFlag=false;
+    this.resetAllFlags();
     this.listFlag=true;
     
       this.onboardService.getAllOnboard().subscribe(
@@ -63,14 +77,23 @@ export class OnboardComponent implements OnInit {
         {
             this.onboardList = listOfOnboard;
             console.log(this.onboardList);
+        },
+        (error)=>
+        {
+          this.resetAllFlags();
+          this.noOboardsPresentFlag=true;
+          alert("No Onboards Found");
         }
-      )
+      );
   }
 
   searchById()
   {
-    this.addFlag=false;
-    this.listFlag=false
+    if(this.onboardPlaceHolder.onb_id == 0){
+      alert("enter required details");
+      return;
+    }
+    this.resetAllFlags();
     this.elementFlag=true
     this.onboardService.getOnboardById(this.onboardPlaceHolder.onb_id).subscribe(
       (onboard: OnboardInterface)=>{
@@ -78,22 +101,39 @@ export class OnboardComponent implements OnInit {
         console.log(this.onboardCommunication);
         
       },
-      (error)=>{})
+      (error)=>{
+        this.resetAllFlags();
+        this.noOboardsPresentFlag=true;
+        alert("No Onboards Found");
+      })
   }
 
   searchByEmployeeAndDemand()
   {
-      this.addFlag=false;
-      this.listFlag=false;
-      this.elementFlag=true;
-      console.log("searchby employee and demand");
+    if(this.onboardPlaceHolder.emp_id == 0 || this.onboardPlaceHolder.dem_id == 0){
+      alert("enter required details");
+      return;
+    }
+    this.resetAllFlags();
+    this.elementFlag=true
+    this.onboardService.getOnboardWithEmployeeIdAndDemandId(this.onboardPlaceHolder.emp_id,this.onboardPlaceHolder.dem_id).subscribe(
+      (onboard: OnboardInterface)=>{
+        this.onboardCommunication = onboard;
+        console.log(this.onboardCommunication);
+        
+      },
+      (error)=>{
+        this.resetAllFlags();
+          this.noOboardsPresentFlag=true;
+          alert("No Onboards Found");
+      })
   }
 
 
   saveAllChanges()
   {
-    this.operationSuccessfulFlag =false;
-    this.operationFailedFlag=false;
+    this.resetAllFlags();
+    this.elementFlag=true;
      console.log(this.onboardCommunication.start_date);
      this.onboardService.putOnboard(this.onboardCommunication).subscribe(
        (data)=>{
@@ -103,14 +143,15 @@ export class OnboardComponent implements OnInit {
             this.operationFailedFlag=true;
             
 
-       }
+       },
+       (error)=>{this.operationFailedFlag=true;}
      );
   }
 
   delete()
   {
-    this.operationSuccessfulFlag =false;
-    this.operationFailedFlag=false;
+    this.resetAllFlags();
+    this.elementFlag=true;
      console.log(this.onboardCommunication.start_date);
      this.onboardService.deleteOnboard(this.onboardCommunication).subscribe(
        (data)=>{
@@ -120,14 +161,15 @@ export class OnboardComponent implements OnInit {
             this.operationFailedFlag=true;
             
 
-       }
+       },
+       (error)=>{this.operationFailedFlag=true;}
      );
 
   }
 
   add(){
-    this.operationSuccessfulFlag =false;
-    this.operationFailedFlag=false;
+    this.resetAllFlags();
+    this.addFlag=true;
      console.log(this.onboardCommunication.start_date);
      this.onboardService.addOnboard(this.onboardCommunication).subscribe(
        (data)=>{
@@ -137,7 +179,8 @@ export class OnboardComponent implements OnInit {
             this.operationFailedFlag=true;
             
 
-       }
+       },
+       (error)=>{this.operationFailedFlag=true;}
      );
   }
 
