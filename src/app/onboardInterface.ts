@@ -1,4 +1,4 @@
-export class OnboardClass {
+export interface OnboardInterface {
     onb_id: Number
     emp_id: Number
     dem_id: Number

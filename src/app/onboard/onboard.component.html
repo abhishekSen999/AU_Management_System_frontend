@@ -1,9 +1,234 @@
-<div class= "onboard">
+<div class="onboard">
     <app-navigation></app-navigation>
-    <div class = "onboard-body">
-        <span><h3>Search by: </h3></span><br>
-        <label>Onboard Id: 
-            <!-- <input [(ngModel)]="onboardObject.onb_id" placeholder='onboardId'/> -->
-        </label>
+    <div id="onboard-body">
+        <!-- <span><h3>Search by: </h3></span> -->
+        <div id=search-panel>
+            <span>
+                <h3>Search List Of Onboards:</h3>
+            </span>
+            <ul>
+                <li> Search For All Onboards: <button class=onboard-search-button (click)=searchAll()>Search</button><br>
+                </li>   
+            </ul>
+            <h3>Search Particular Onboard by: </h3>
+            <ul>
+                <li><label>Onboard Id:
+                        <input [(ngModel)]="onboardPlaceHolder.onb_id" placeholder='Onboard Id' />
+                    </label>
+                    <button class=onboard-search-button (click)=searchById()>Search</button>
+                    <br>
+                </li>
+
+                <li>
+                    <label>Employee Id:
+                        <input [(ngModel)]="onboardPlaceHolder.emp_id" placeholder='Employee Id' />
+                    </label>
+                    <label>Demand Id:
+                        <input [(ngModel)]="onboardPlaceHolder.dem_id" placeholder='Demand Id' />
+                    </label>
+                    <button class=onboard-search-button (click)=searchByEmployeeAndDemand()>Search</button>
+                    <br>
+                </li>
+            </ul>
+        </div>
+        <div id='add-panel'>
+            <h3>Add Onboard Entry: <button (click)=displayAdd()>Show Form</button></h3>
+        </div>
+        <!-- ##############################--display list of onboards--###################################-->
+
+        <div id=display-onboard-list>
+
+            <table border="1" *ngIf='listFlag'>
+
+                <tr>
+                    <th>
+                        Onboard Id
+                    </th>
+                    <th>
+                        Employee Id
+                    </th>
+                    <th>
+                        Demand Id
+                    </th>
+                    <th>
+                        Start Date
+                    </th>
+                    <th>
+                        ETA of Completion
+                    </th>
+                    <th>
+                        Onboarding Status
+                    </th>
+                    <th>
+                        BGC Status
+                    </th>
+                </tr>
+
+
+                <tr *ngFor='let element of onboardList'>
+                    <td>
+                        {{element.onb_id}}
+                    </td>
+                    <td>
+                        {{element.emp_id}}
+                    </td>
+                    <td>
+                        {{element.dem_id}}
+                    </td>
+                    <td>
+                        {{element.start_date}}
+                    </td>
+                    <td>
+                        {{element.eta_of_completion}}
+                    </td>
+                    <td>
+                        {{element.onboarding_status}}
+                    </td>
+                    <td>
+                        {{element.bgc_status}}
+                    </td>
+
+                </tr>
+
+            </table>
+
+
+
+        </div>
+
+
+        <!--##################################### Display Edit Onboard ############################ -->
+        <div id="onboard-edit-delete" *ngIf='elementFlag'>
+
+            <table border="1">
+
+                <tr>
+                    <th>
+                        Onboard Id
+                    </th>
+                    <th>
+                        Employee Id
+                    </th>
+                    <th>
+                        Demand Id
+                    </th>
+                    <th>
+                        Start Date
+                    </th>
+                    <th>
+                        ETA of Completion
+                    </th>
+                    <th>
+                        Onboarding Status
+                    </th>
+                    <th>
+                        BGC Status
+                    </th>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        {{onboardCommunication.onb_id}}
+                    </td>
+                    <td>
+                        <input [(ngModel)]='onboardCommunication.emp_id' placeholder="0">
+                    </td>
+                    <td>
+                        <input [(ngModel)]='onboardCommunication.dem_id' placeholder="0">
+                    </td>
+                    <td>
+                        <input type=date [(ngModel)]='onboardCommunication.start_date' placeholder="0000-00-00">
+                    </td>
+                    <td>
+                        <input type=date [(ngModel)]='onboardCommunication.eta_of_completion' placeholder="0000-00-00">
+
+                    </td>
+                    <td>
+                        <input [(ngModel)]='onboardCommunication.onboarding_status ' placeholder="">
+
+                    </td>
+                    <td>
+                        <input [(ngModel)]='onboardCommunication.bgc_status' placeholder="">
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+            <button (click)=saveAllChanges()>Save</button>
+            <button (click)=delete()>Delete</button>
+            <span *ngIf='operationSuccessfulFlag'> Operation Successful </span>
+            <span *ngIf='operationFailedFlag'> Operation Failed </span>
+
+        </div>
+<!-- ############################### add panel ############################################# -->
+        <div id=add-onboard *ngIf="addFlag">
+
+            <table border="1">
+
+                <tr>
+                   
+                    <th>
+                        Employee Id
+                    </th>
+                    <th>
+                        Demand Id
+                    </th>
+                    <th>
+                        Start Date
+                    </th>
+                    <th>
+                        ETA of Completion
+                    </th>
+                    <th>
+                        Onboarding Status
+                    </th>
+                    <th>
+                        BGC Status
+                    </th>
+                </tr>
+
+
+                <tr>
+                    
+                    <td>
+                        <input [(ngModel)]='onboardCommunication.emp_id' placeholder="0">
+                    </td>
+                    <td>
+                        <input [(ngModel)]='onboardCommunication.dem_id' placeholder="0">
+                    </td>
+                    <td>
+                        <input type=date [(ngModel)]='onboardCommunication.start_date' placeholder="0000-00-00">
+                    </td>
+                    <td>
+                        <input type=date [(ngModel)]='onboardCommunication.eta_of_completion' placeholder="0000-00-00">
+
+                    </td>
+                    <td>
+                        <input [(ngModel)]='onboardCommunication.onboarding_status ' placeholder="">
+
+                    </td>
+                    <td>
+                        <input [(ngModel)]='onboardCommunication.bgc_status' placeholder="">
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+            <button (click)=add()>Save</button>
+            <span *ngIf='operationSuccessfulFlag'> Operation Successful </span>
+            <span *ngIf='operationFailedFlag'> Operation Failed </span>
+            
+
+        </div>
+
+
+
+
     </div>
+
 </div>

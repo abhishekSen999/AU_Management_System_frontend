@@ -12,6 +12,8 @@ import { AuthorizationService } from './authorization.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NavigationComponent } from './navigation/navigation.component';
 import { OnboardComponent } from './onboard/onboard.component';
+import { OnboardService } from './onboard.service';
+import { DisplayOnboardListComponent } from './display-onboard-list/display-onboard-list.component';
 
 
 
@@ -23,16 +25,18 @@ import { OnboardComponent } from './onboard/onboard.component';
     ManagerHomeComponent,
     LoginComponent,
     NavigationComponent,
+    OnboardComponent,
+    DisplayOnboardListComponent
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule,
-    OnboardComponent
+    HttpClientModule
+    
   ],
-  providers: [AuthorizationService],
+  providers: [AuthorizationService,OnboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
