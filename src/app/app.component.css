@@ -296,3 +296,17 @@
   height: 100%;
   font-family: 'Roboto Slab', serif;
  }
+ app-header{
+
+  height: 10%;
+  width: 100%
+
+ }
+ add-footer{
+   height: 10%;
+   width: 100%
+ }
+ router-outlet{
+   height: 80%;
+   width: 100%
+ }

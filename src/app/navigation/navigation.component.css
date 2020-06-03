@@ -1,0 +1,9 @@
+.navigation{
+    height:50px;
+    width: 100%;
+    background:#235472;
+}
+.navigation-button{
+    margin-left: 1%;
+    margin-top: 1%;
+}

@@ -28,14 +28,11 @@ export class AuthorizationService {
    getAuthorizationlevel(){
     console.log("authorization level");
     const urlExtensionLogin = this.url+"/user";
-    const redirectionUrl = this.url+"/oauth2/authorization/google"; //learn to get redirection location from observable
+    // const redirectionUrl = this.url+"/oauth2/authorization/google"; //learn to get redirection location from observable
 
-    this.httpClient.get(urlExtensionLogin).subscribe(
-      (data) => {return data},
-      (error) => {this.redirect(urlExtensionLogin,'_blank')}          
-    )
+    return this.httpClient.get(urlExtensionLogin);
 
-    return ;
+    
    }
 
    redirect(url: string, target = '_blank'): Promise<boolean> {

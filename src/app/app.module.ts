@@ -10,6 +10,9 @@ import { ManagerHomeComponent } from './manager-home/manager-home.component';
 import { LoginComponent } from './login/login.component'
 import { AuthorizationService } from './authorization.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { NavigationComponent } from './navigation/navigation.component';
+import { OnboardComponent } from './onboard/onboard.component';
+
 
 
 @NgModule({
@@ -18,13 +21,16 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     FooterComponent,
     ManagerHomeComponent,
-    LoginComponent
+    LoginComponent,
+    NavigationComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    OnboardComponent
   ],
   providers: [AuthorizationService],
   bootstrap: [AppComponent]
