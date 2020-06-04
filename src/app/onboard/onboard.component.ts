@@ -72,11 +72,12 @@ export class OnboardComponent implements OnInit {
   searchAll()
   {
     this.resetAllFlags();
-    this.listFlag=true;
+    
     
       this.onboardService.getAllOnboard().subscribe(
         (listOfOnboard)=>
         {
+            this.listFlag=true;
             this.onboardList = listOfOnboard;
             console.log(this.onboardList);
         },
@@ -92,11 +93,12 @@ export class OnboardComponent implements OnInit {
   searchByStartDate()
   {
     this.resetAllFlags();
-    this.listFlag=true;
+    
     
       this.onboardService.getAllOnboardByStartDate( this.onboardPlaceHolder.start_date ).subscribe(
         (listOfOnboard)=>
         {
+            this.listFlag=true;
             this.onboardList = listOfOnboard;
             console.log(this.onboardList);
         },
@@ -112,11 +114,12 @@ export class OnboardComponent implements OnInit {
   searchByEtaOfCompletion()
   {
     this.resetAllFlags();
-    this.listFlag=true;
+    
     
       this.onboardService.getAllOnboardByEtaOfCompletion( this.onboardPlaceHolder.eta_of_completion ).subscribe(
         (listOfOnboard)=>
         {
+            this.listFlag=true;
             this.onboardList = listOfOnboard;
             console.log(this.onboardList);
         },
@@ -133,11 +136,12 @@ export class OnboardComponent implements OnInit {
   searchByOnboardingStatus()
   {
     this.resetAllFlags();
-    this.listFlag=true;
+    
     
       this.onboardService.getAllOnboardByOnboardingStatus( this.onboardPlaceHolder.onboarding_status ).subscribe(
         (listOfOnboard)=>
         {
+          this.listFlag=true;
             this.onboardList = listOfOnboard;
             console.log(this.onboardList);
         },
@@ -153,11 +157,12 @@ export class OnboardComponent implements OnInit {
   searchByBgcStatus()
   {
     this.resetAllFlags();
-    this.listFlag=true;
+    
     
       this.onboardService.getAllOnboardByBgcStatus( this.onboardPlaceHolder.bgc_status ).subscribe(
         (listOfOnboard)=>
         {
+            this.listFlag=true;
             this.onboardList = listOfOnboard;
             console.log(this.onboardList);
         },
@@ -180,9 +185,10 @@ export class OnboardComponent implements OnInit {
       return;
     }
     this.resetAllFlags();
-    this.elementFlag=true
+    
     this.onboardService.getOnboardById(this.onboardPlaceHolder.onb_id).subscribe(
       (onboard: OnboardInterface)=>{
+        this.elementFlag=true
         this.onboardCommunication = onboard;
         console.log(this.onboardCommunication);
         
@@ -201,9 +207,10 @@ export class OnboardComponent implements OnInit {
       return;
     }
     this.resetAllFlags();
-    this.elementFlag=true
+    
     this.onboardService.getOnboardWithEmployeeIdAndDemandId(this.onboardPlaceHolder.emp_id,this.onboardPlaceHolder.dem_id).subscribe(
       (onboard: OnboardInterface)=>{
+        this.elementFlag=true
         this.onboardCommunication = onboard;
         console.log(this.onboardCommunication);
         

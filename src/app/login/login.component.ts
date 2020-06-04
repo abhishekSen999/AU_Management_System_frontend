@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
         console.log(userLevel);
 
         if( userLevel == "manager" || userLevel == "admin" )
-        console.log("line 28")
+        
         this.router.navigate(['/manager']);
 
 

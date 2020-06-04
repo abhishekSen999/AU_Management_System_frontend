@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { DOCUMENT } from '@angular/common';
 
 @Injectable({
@@ -30,6 +30,7 @@ export class AuthorizationService {
     const urlExtensionLogin = this.url+"/user";
     // const redirectionUrl = this.url+"/oauth2/authorization/google"; //learn to get redirection location from observable
 
+    
     return this.httpClient.get(urlExtensionLogin);
 
     

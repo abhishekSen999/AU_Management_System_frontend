@@ -1,0 +1,143 @@
+<app-navigation></app-navigation>
+<div id=log-body>
+    <ul>
+        <li> Search For All Logs:
+            <button class=log-search-button (click)=searchAllLog()>Search</button><br>
+        </li> 
+
+        <li> Search For Logs with Employee Id :
+            <input  [(ngModel)]="onboardLogPlaceholder.emp_id" placeholder='employee id' />
+                    
+            <button class=log-search-button (click)=searchAllLogByEmployeeId()>Search</button><br>
+        </li>
+        
+        <li> Search For Logs with Demand Id :
+            <input  [(ngModel)]="onboardLogPlaceholder.dem_id" placeholder='demand id' />
+                    
+            <button class=log-search-button (click)=searchAllLogByDemandId()>Search</button><br>
+        </li>
+
+        <li> Search For Logs with Employee Id :
+            <input  [(ngModel)]="onboardLogPlaceholder.emp_id" placeholder='employee id' />
+             and Demand Id = : 
+             <input  [(ngModel)]="onboardLogPlaceholder.dem_id" placeholder='demand id' />
+                  
+            <button class=log-search-button (click)=searchAllLogByEmployeeIdAndDemandId()>Search</button><br>
+        </li>
+
+
+        <li> Search For Logs By Operator :
+            <input  [(ngModel)]="onboardLogPlaceholder.operator" placeholder='operator email' />
+                    
+            <button class=log-search-button (click)=searchAllLogByOperator()>Search</button><br>
+        </li>
+
+
+        <li> Search For Logs By Operation :
+            <input  [(ngModel)]="onboardLogPlaceholder.operation" placeholder='add/update/delete' />
+                    
+            <button class=log-search-button (click)=searchAllLogByOperation()>Search</button><br>
+        </li>
+
+
+        <li> Search For Logs with between :
+            <input type="date" [(ngModel)]="date1" />
+             - 
+             <input type="date" [(ngModel)]="date2"  />
+                  
+            <button class=log-search-button (click)=searchAllLogBetweenDate()>Search</button><br>
+        </li>
+
+
+    </ul>
+
+
+    <div id=display-log-list>
+
+        <table border="1" *ngIf='logListFlag'>
+
+            <tr>
+                <th>
+                    Log Id
+                </th>
+                <th>
+                    Timestamp
+                </th>
+                <th>
+                    Operator
+                </th>
+                <th>
+                    Operation
+                </th>
+                <th>
+                    Onboard Id
+                </th>
+                <th>
+                    Employee Id
+                </th>
+                <th>
+                    Demand Id
+                </th>
+                <th>
+                    Start Date
+                </th>
+                <th>
+                    ETA of Completion
+                </th>
+                <th>
+                    Onboarding Status
+                </th>
+                <th>
+                    BGC Status
+                </th>
+            </tr>
+
+
+            <tr *ngFor='let element of onboardLogList'>
+                <td>
+                    {{element.log_id}}
+                </td>
+                <td>
+                    {{element.timestamp}}
+                </td>
+                <td>
+                    {{element.operator}}
+                </td>
+                <td>
+                    {{element.operation}}
+                </td>
+
+                <td>
+                    {{element.onb_id}}
+                </td>
+                <td>
+                    {{element.emp_id}}
+                </td>
+                <td>
+                    {{element.dem_id}}
+                </td>
+                <td>
+                    {{element.start_date}}
+                </td>
+                <td>
+                    {{element.eta_of_completion}}
+                </td>
+                <td>
+                    {{element.onboarding_status}}
+                </td>
+                <td>
+                    {{element.bgc_status}}
+                </td>
+
+            </tr>
+
+        </table>
+
+
+
+    </div>
+
+
+
+
+</div>

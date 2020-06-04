@@ -14,6 +14,8 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { OnboardComponent } from './onboard/onboard.component';
 import { OnboardService } from './onboard.service';
 import { DisplayOnboardListComponent } from './display-onboard-list/display-onboard-list.component';
+import { LogComponent } from './log/log.component';
+import { LogService } from './log.service';
 
 
 
@@ -26,7 +28,8 @@ import { DisplayOnboardListComponent } from './display-onboard-list/display-onbo
     LoginComponent,
     NavigationComponent,
     OnboardComponent,
-    DisplayOnboardListComponent
+    DisplayOnboardListComponent,
+    LogComponent
     
   ],
   imports: [
@@ -36,7 +39,7 @@ import { DisplayOnboardListComponent } from './display-onboard-list/display-onbo
     HttpClientModule
     
   ],
-  providers: [AuthorizationService,OnboardService],
+  providers: [AuthorizationService,OnboardService,LogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

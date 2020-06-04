@@ -17,9 +17,13 @@ export class NavigationComponent implements OnInit {
   {
     this.router.navigate(['/manager']);
   }
-  onboarding()
+  onboard()
   {
     this.router.navigate(['/onboard']);
+  }
+  log()
+  {
+    this.router.navigate(['/log']);
   }
 
 

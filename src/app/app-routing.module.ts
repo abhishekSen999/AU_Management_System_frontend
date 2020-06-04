@@ -3,14 +3,16 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from "./login/login.component"
 import { ManagerHomeComponent } from "./manager-home/manager-home.component"
 import { OnboardComponent } from "./onboard/onboard.component"
+import { LogComponent } from './log/log.component';
 
 
 const routes: Routes = [
   
   { path: 'login' , component: LoginComponent , pathMatch: 'full'},
   { path: '' , redirectTo: '/login', pathMatch: 'full'},
-  {path: 'manager', component: ManagerHomeComponent},
-  {path: 'onboard', component: OnboardComponent}
+  { path: 'manager', component: ManagerHomeComponent},
+  { path: 'onboard', component: OnboardComponent},
+  { path: 'log', component: LogComponent}
 ];
 
 @NgModule({
