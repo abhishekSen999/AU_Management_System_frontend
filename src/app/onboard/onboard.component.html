@@ -4,11 +4,35 @@
         <!-- <span><h3>Search by: </h3></span> -->
         <div id=search-panel>
             <span>
-                <h3>Search List Of Onboards:</h3>
+                <h3 id=list-search>Search List Of Onboards:</h3>
             </span>
             <ul>
-                <li> Search For All Onboards: <button class=onboard-search-button (click)=searchAll()>Search</button><br>
-                </li>   
+                <li> Search For All Onboards:
+                    <button class=onboard-search-button (click)=searchAll()>Search</button><br>
+                </li> 
+                <li> Search For All Onboards by Start Date: 
+                    <input type=date [(ngModel)]="onboardPlaceHolder.start_date" placeholder='start Date' />
+                    <button class=onboard-search-button (click)=searchByStartDate()>Search</button><br>
+                </li>
+                <li> Search For All Onboards by ETA of  Completion: 
+                    <input type=date [(ngModel)]="onboardPlaceHolder.eta_of_completion" placeholder='eta of completion' />
+                    <button class=onboard-search-button (click)=searchByEtaOfCompletion()>Search</button><br>
+                </li>
+                <li> Search For All Onboards by Onboarding Status: 
+                    <input  [(ngModel)]="onboardPlaceHolder.onboarding_status" placeholder='onboarding status' />
+                    
+                    <button class=onboard-search-button (click)=searchByOnboardingStatus()>Search</button><br>
+                    ( can use * to replace any set of charecter )
+                </li>
+                <li> Search For All Onboards by BGC Status: 
+                    <input  [(ngModel)]="onboardPlaceHolder.bgc_status" placeholder='bgc status' />
+                    <button class=onboard-search-button (click)=searchByBgcStatus()>Search</button><br>
+                    ( can use * to replace any set of charecter )
+                </li>
+
+                
+
+
             </ul>
             <h3>Search Particular Onboard by: </h3>
             <ul>
@@ -34,6 +58,9 @@
         <div id='add-panel'>
             <h3>Add Onboard Entry: <button (click)=displayAdd()>Show Form</button></h3>
         </div>
+
+        
+
         <!-- ##############################--display list of onboards--###################################-->
 
         <div id=display-onboard-list>

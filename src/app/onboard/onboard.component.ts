@@ -67,6 +67,8 @@ export class OnboardComponent implements OnInit {
     this.resetAllFlags();
     this.addFlag=true;
   }
+
+  // ################# list Result
   searchAll()
   {
     this.resetAllFlags();
@@ -87,6 +89,90 @@ export class OnboardComponent implements OnInit {
       );
   }
 
+  searchByStartDate()
+  {
+    this.resetAllFlags();
+    this.listFlag=true;
+    
+      this.onboardService.getAllOnboardByStartDate( this.onboardPlaceHolder.start_date ).subscribe(
+        (listOfOnboard)=>
+        {
+            this.onboardList = listOfOnboard;
+            console.log(this.onboardList);
+        },
+        (error)=>
+        {
+          this.resetAllFlags();
+          this.noOboardsPresentFlag=true;
+          alert("No Onboards Found");
+        }
+      );
+  }
+
+  searchByEtaOfCompletion()
+  {
+    this.resetAllFlags();
+    this.listFlag=true;
+    
+      this.onboardService.getAllOnboardByEtaOfCompletion( this.onboardPlaceHolder.eta_of_completion ).subscribe(
+        (listOfOnboard)=>
+        {
+            this.onboardList = listOfOnboard;
+            console.log(this.onboardList);
+        },
+        (error)=>
+        {
+          this.resetAllFlags();
+          this.noOboardsPresentFlag=true;
+          alert("No Onboards Found");
+        }
+      );
+  }
+
+
+  searchByOnboardingStatus()
+  {
+    this.resetAllFlags();
+    this.listFlag=true;
+    
+      this.onboardService.getAllOnboardByOnboardingStatus( this.onboardPlaceHolder.onboarding_status ).subscribe(
+        (listOfOnboard)=>
+        {
+            this.onboardList = listOfOnboard;
+            console.log(this.onboardList);
+        },
+        (error)=>
+        {
+          this.resetAllFlags();
+          this.noOboardsPresentFlag=true;
+          alert("No Onboards Found");
+        }
+      );
+  }
+
+  searchByBgcStatus()
+  {
+    this.resetAllFlags();
+    this.listFlag=true;
+    
+      this.onboardService.getAllOnboardByBgcStatus( this.onboardPlaceHolder.bgc_status ).subscribe(
+        (listOfOnboard)=>
+        {
+            this.onboardList = listOfOnboard;
+            console.log(this.onboardList);
+        },
+        (error)=>
+        {
+          this.resetAllFlags();
+          this.noOboardsPresentFlag=true;
+          alert("No Onboards Found");
+        }
+      );
+  }
+
+
+
+  // ########################### Element Result
   searchById()
   {
     if(this.onboardPlaceHolder.onb_id == 0){

@@ -26,7 +26,31 @@ export class OnboardService {
     return this.http.get(`${this.url}/manager/onboard`);
   }
 
-  getOnboardWithEmployeeIdAndDemandId(emp_id,dem_id)
+  getAllOnboardByStartDate(start_date)
+  {
+    return this.http.get(`${this.url}/manager/onboard/start_date=${start_date}`);
+  }
+
+  getAllOnboardByEtaOfCompletion(eta_of_completion)
+  {
+    return this.http.get(`${this.url}/manager/onboard/eta_of_completion=${eta_of_completion}`);
+  }
+
+  getAllOnboardByOnboardingStatus(onboarding_status)
+  {
+    return this.http.get(`${this.url}/manager/onboard/onboarding_status=${onboarding_status}`);
+  }
+  getAllOnboardByBgcStatus(bgc_status)
+  {
+    return this.http.get(`${this.url}/manager/onboard/bgc_status=${bgc_status}`);
+  }
+
+
+
+
+
+
+  getOnboardWithEmployeeIdAndDemandId(emp_id , dem_id)
   {
     return this.http.get(`${this.url}/manager/onboard/emp_id=${emp_id}&dem_id=${dem_id}`);
   } 
