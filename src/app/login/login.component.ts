@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorizationService } from '../authorization.service'
-import { Router,ActivatedRoute, ParamMap } from '@angular/router'
+import { Router} from '@angular/router'
+import { AuthService } from "angularx-social-login";
+import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
+ 
 
 @Component({
   selector: 'app-login',
@@ -9,36 +12,58 @@ import { Router,ActivatedRoute, ParamMap } from '@angular/router'
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authorizationService: AuthorizationService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router,private authorizationService: AuthorizationService) { }
 
   ngOnInit(): void {
   }
 
   private serverStatus: any;
   private authorizationLevel: any;
-  private countLoginAttempt= 0;
-  private maxLoginTry = 3;
+  // private countLoginAttempt= 0;
+  // private maxLoginTry = 3;
   login(){
-    this.countLoginAttempt+=1;
-    const urlExtensionLogin = this.authorizationService.url+"/user";
-    this.authorizationLevel= this.authorizationService.getAuthorizationlevel().subscribe(
-      (userLevel) => {
-        console.log(userLevel);
+  //   this.countLoginAttempt+=1;
+  //   const urlExtensionLogin = this.authorizationService.url+"/user";
+  //   this.authorizationLevel= this.authorizationService.getAuthorizationlevel().subscribe(
+  //     (userLevel) => {
+  //       console.log(userLevel);
 
-        if( userLevel == "manager" || userLevel == "admin" )
+  //       if( userLevel == "manager" || userLevel == "admin" )
         
-        this.router.navigate(['/manager']);
+  //       this.router.navigate(['/manager']);
 
 
-        },
-      (error) => {this.authorizationService.redirect(urlExtensionLogin,'_blank');
-           if (this.countLoginAttempt<this.maxLoginTry) 
+  //       },
+  //     (error) => {this.authorizationService.redirect(urlExtensionLogin,'_blank');
+  //          if (this.countLoginAttempt<this.maxLoginTry) 
                     
-                this.login();}          
-    );
-    console.log();
+  //               this.login();}          
+  //   );
+  //   console.log();
 
+
+      
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+
+    this.authorizationService.checkLoginStatus();
+
+    // this.authorizationLevel= this.authorizationService.getAuthorizationlevel().subscribe(
+    //     (userLevel) => {
+    //         console.log(userLevel);
+        
+    //         if( userLevel == "manager" || userLevel == "admin" )
+    //               this.router.navigate(['/manager']);
+    //     });
   }
+
+
+
+
+  
+  signOut(): void {
+    this.authService.signOut();
+  } 
+
 
 
 }
