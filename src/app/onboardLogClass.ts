@@ -1,7 +1,7 @@
 
 
 export class OnboardLogClass {
-    log_id: Number ;
+    log_id: Number 
     timestamp: 	Date
     operator: String
     operation: String

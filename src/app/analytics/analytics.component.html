@@ -1,0 +1,12 @@
+<app-navigation></app-navigation>
+<div id=analytics-body>
+
+    <ul>
+        <li> View Location wise trends:
+            <button class=analytics-view-button (click)=locationAnalytics()>View</button><br>
+        </li> 
+    </ul>
+
+    <google-chart #chart [data]="dataPoints" [type]="type"></google-chart>
+
+</div>

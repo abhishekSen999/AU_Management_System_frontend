@@ -4,6 +4,7 @@ import { LoginComponent } from "./login/login.component"
 import { ManagerHomeComponent } from "./manager-home/manager-home.component"
 import { OnboardComponent } from "./onboard/onboard.component"
 import { LogComponent } from './log/log.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: '' , redirectTo: '/login', pathMatch: 'full'},
   { path: 'manager', component: ManagerHomeComponent},
   { path: 'onboard', component: OnboardComponent},
-  { path: 'log', component: LogComponent}
+  { path: 'log', component: LogComponent},
+  { path: 'analytics' , component: AnalyticsComponent}
 ];
 
 @NgModule({

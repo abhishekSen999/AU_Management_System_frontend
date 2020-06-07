@@ -19,7 +19,9 @@ import { LogService } from './log.service';
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 import { GoogleLoginProvider} from "angularx-social-login";
 import { AuthenticationHelper } from './authenticationHelper';
- 
+import { AnalyticsComponent } from './analytics/analytics.component';
+import { AnalyticsService } from './analytics.service';
+import { GoogleChartsModule } from 'angular-google-charts';
  
 let config = new AuthServiceConfig([
   {
@@ -44,8 +46,11 @@ export function provideConfig() {
     LoginComponent,
     NavigationComponent,
     OnboardComponent,
+    
     DisplayOnboardListComponent,
-    LogComponent
+    LogComponent,
+    AnalyticsComponent
+  
     
   ],
   imports: [
@@ -53,10 +58,12 @@ export function provideConfig() {
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    SocialLoginModule 
+    SocialLoginModule ,
+    GoogleChartsModule
+
     
   ],
-  providers: [AuthorizationService,OnboardService,LogService,
+  providers: [AuthorizationService,OnboardService,LogService,AnalyticsService,
     {provide: AuthServiceConfig,useFactory: provideConfig },
     {provide: HTTP_INTERCEPTORS,useClass: AuthenticationHelper, multi: true }
   ],

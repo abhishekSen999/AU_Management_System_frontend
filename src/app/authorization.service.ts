@@ -31,10 +31,17 @@ export class AuthorizationService {
       (user1) => {
         this.user = user1;
         this.loggedIn = (user1 != null);
-        this.idToken = user1.idToken;
-        console.log(this.loggedIn );
-        console.log(this.user.idToken);
-        this.redirectToAppropriatePage();
+        
+        if(this.loggedIn)
+        {  this.idToken = user1.idToken;
+          console.log(this.loggedIn );
+          console.log(this.user.idToken);
+          this.redirectToAppropriatePage();
+        }
+        else
+          this.checkLoginStatus();
+         
+          
     });
    }
 

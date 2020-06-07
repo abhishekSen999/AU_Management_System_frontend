@@ -27,6 +27,12 @@ export class NavigationComponent implements OnInit {
   {
     this.router.navigate(['/log']);
   }
+
+  analytics()
+  {
+    this.router.navigate(['/analytics']);
+  }
+
     
   signOut(): void {
     this.authService.signOut();

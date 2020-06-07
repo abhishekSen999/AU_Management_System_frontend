@@ -22,49 +22,14 @@ export class LoginComponent implements OnInit {
   // private countLoginAttempt= 0;
   // private maxLoginTry = 3;
   login(){
-  //   this.countLoginAttempt+=1;
-  //   const urlExtensionLogin = this.authorizationService.url+"/user";
-  //   this.authorizationLevel= this.authorizationService.getAuthorizationlevel().subscribe(
-  //     (userLevel) => {
-  //       console.log(userLevel);
-
-  //       if( userLevel == "manager" || userLevel == "admin" )
-        
-  //       this.router.navigate(['/manager']);
-
-
-  //       },
-  //     (error) => {this.authorizationService.redirect(urlExtensionLogin,'_blank');
-  //          if (this.countLoginAttempt<this.maxLoginTry) 
-                    
-  //               this.login();}          
-  //   );
-  //   console.log();
-
+  
 
       
-      this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then
-      {
-        this.authorizationService.checkLoginStatus();
-      };
+      this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
+           (value)=>this.authorizationService.checkLoginStatus(),
+           (error)=>{});
 
-    // this.authorizationService.checkLoginStatus();
-
-    // this.authorizationLevel= this.authorizationService.getAuthorizationlevel().subscribe(
-    //     (userLevel) => {
-    //         console.log(userLevel);
-        
-    //         if( userLevel == "manager" || userLevel == "admin" )
-    //               this.router.navigate(['/manager']);
-    //     });
   }
-
-
-
-
-  
-   
-
 
 
 }
