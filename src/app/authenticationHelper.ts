@@ -11,13 +11,13 @@ export class AuthenticationHelper implements HttpInterceptor{
     constructor(private authorizationService: AuthorizationService){}
 
     intercept(request: HttpRequest <any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        let authToken = this.authorizationService.getAuthenticationToken();
+        let idToken = this.authorizationService.getIdToken();
         console.log(" get request intercepted ");
-        console.log(`Bearer ${authToken}`);
+        // console.log(`Bearer ${idToken}`);
         request = request.clone({
             setHeaders: {
                 
-                Authorization: `Bearer ${authToken}`
+                Authorization: `${idToken}`
             }
         });
         return next.handle(request);

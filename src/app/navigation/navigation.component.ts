@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'angularx-social-login';
+
 
 
 @Component({
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor(private router : Router) { }
+  constructor(private router : Router, private authService: AuthService ) { }
 
   ngOnInit(): void {
   }
@@ -24,6 +26,11 @@ export class NavigationComponent implements OnInit {
   log()
   {
     this.router.navigate(['/log']);
+  }
+    
+  signOut(): void {
+    this.authService.signOut();
+    this.router.navigate(['/login']);
   }
 
 

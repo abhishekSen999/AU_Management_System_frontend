@@ -43,9 +43,12 @@ export class LoginComponent implements OnInit {
 
 
       
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+      this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then
+      {
+        this.authorizationService.checkLoginStatus();
+      };
 
-    this.authorizationService.checkLoginStatus();
+    // this.authorizationService.checkLoginStatus();
 
     // this.authorizationLevel= this.authorizationService.getAuthorizationlevel().subscribe(
     //     (userLevel) => {
@@ -60,9 +63,7 @@ export class LoginComponent implements OnInit {
 
 
   
-  signOut(): void {
-    this.authService.signOut();
-  } 
+   
 
 
 

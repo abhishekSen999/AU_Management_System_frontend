@@ -13,27 +13,28 @@ export class AuthorizationService {
   public url:any = "http://localhost:8080";
   private user: SocialUser;
   private loggedIn: boolean= false;
-  private authenticationToken: String;
+  private idToken: String;
 
 
 
   constructor(private router:Router,private http: HttpClient,@Inject(DOCUMENT) readonly document: Document, private authService: AuthService) {
    }
 
-   getAuthenticationToken(){
-     return this.authenticationToken;
+   getIdToken(){
+     return this.idToken;
    }
 
 
    checkLoginStatus()
    {
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-      this.loggedIn = (user != null);
-      this.authenticationToken = this.user.authToken;
-      console.log(this.loggedIn );
-      console.log(this.user.authToken);
-      this.redirectToAppropriatePage();
+    this.authService.authState.subscribe(
+      (user1) => {
+        this.user = user1;
+        this.loggedIn = (user1 != null);
+        this.idToken = user1.idToken;
+        console.log(this.loggedIn );
+        console.log(this.user.idToken);
+        this.redirectToAppropriatePage();
     });
    }
 
