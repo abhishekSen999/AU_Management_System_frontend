@@ -20,6 +20,12 @@ export class LogService {
     return this.http.get(`${this.url}/manager/log/emp_id=${emp_id}`);
   }
 
+  getAllLogByOnboardId(onb_id)
+  {
+    return this.http.get(`${this.url}/manager/log/onb_id=${onb_id}`);
+  }
+
+
   getAllLogByDemandId(dem_id)
   {
     return this.http.get(`${this.url}/manager/log/dem_id=${dem_id}`);

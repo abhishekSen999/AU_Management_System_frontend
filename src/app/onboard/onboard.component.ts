@@ -3,6 +3,7 @@ import { NavigationComponent } from '../navigation/navigation.component';
 import { OnboardService } from '../onboard.service';
 import { OnboardClass } from '../onboardClass';
 import { OnboardInterface } from '../OnboardInterface';
+import { AuthorizationService } from '../authorization.service';
 
 @Component({
   selector: 'app-onboard',
@@ -57,9 +58,13 @@ export class OnboardComponent implements OnInit {
 
   }
   
-  constructor(public onboardService: OnboardService) { }
+  constructor(public onboardService: OnboardService , public authorizationService : AuthorizationService) { }
 
   ngOnInit(): void {
+
+    this.authorizationService.checkIfUserNeedsRelogin();
+    console.log("here");
+
   }
 
   displayAdd()
@@ -94,6 +99,11 @@ export class OnboardComponent implements OnInit {
   {
     this.resetAllFlags();
     
+    if(this.onboardPlaceHolder.start_date == null)
+    {
+        alert("Enter Requited Details");
+        return;
+    }
     
       this.onboardService.getAllOnboardByStartDate( this.onboardPlaceHolder.start_date ).subscribe(
         (listOfOnboard)=>
@@ -114,7 +124,11 @@ export class OnboardComponent implements OnInit {
   searchByEtaOfCompletion()
   {
     this.resetAllFlags();
-    
+    if(this.onboardPlaceHolder.eta_of_completion == null)
+    {
+        alert("Enter Requited Details");
+        return;
+    }
     
       this.onboardService.getAllOnboardByEtaOfCompletion( this.onboardPlaceHolder.eta_of_completion ).subscribe(
         (listOfOnboard)=>
@@ -136,7 +150,11 @@ export class OnboardComponent implements OnInit {
   searchByOnboardingStatus()
   {
     this.resetAllFlags();
-    
+    if(this.onboardPlaceHolder.onboarding_status == null)
+    {
+        alert("Enter Requited Details");
+        return;
+    }
     
       this.onboardService.getAllOnboardByOnboardingStatus( this.onboardPlaceHolder.onboarding_status ).subscribe(
         (listOfOnboard)=>
@@ -157,7 +175,11 @@ export class OnboardComponent implements OnInit {
   searchByBgcStatus()
   {
     this.resetAllFlags();
-    
+    if(this.onboardPlaceHolder.bgc_status == null)
+    {
+        alert("Enter Requited Details");
+        return;
+    }
     
       this.onboardService.getAllOnboardByBgcStatus( this.onboardPlaceHolder.bgc_status ).subscribe(
         (listOfOnboard)=>
@@ -237,7 +259,10 @@ export class OnboardComponent implements OnInit {
             
 
        },
-       (error)=>{this.operationFailedFlag=true;}
+       (error)=>{
+          alert(error.error);
+         this.operationFailedFlag=true;
+        }
      );
   }
 
@@ -255,13 +280,25 @@ export class OnboardComponent implements OnInit {
             
 
        },
-       (error)=>{this.operationFailedFlag=true;}
+       (error)=>{
+         alert(error.error);
+         this.operationFailedFlag=true;
+        }
      );
 
   }
 
   add(){
     this.resetAllFlags();
+    if(this.onboardPlaceHolder.start_date == null || this.onboardPlaceHolder.eta_of_completion == null
+         || this.onboardPlaceHolder.bgc_status == null || this.onboardPlaceHolder.dem_id == 0
+         || this.onboardPlaceHolder.emp_id == 0 || this.onboardPlaceHolder.onboarding_status == null)
+    {
+        alert("Enter Requited Details");
+        return;
+    }
+
+
     this.addFlag=true;
      console.log(this.onboardCommunication.start_date);
      this.onboardService.addOnboard(this.onboardCommunication).subscribe(
@@ -273,7 +310,10 @@ export class OnboardComponent implements OnInit {
             
 
        },
-       (error)=>{this.operationFailedFlag=true;}
+       (error)=>{
+         alert(error.error);
+         this.operationFailedFlag=true;
+        }
      );
   }
 

@@ -34,16 +34,33 @@ export class AuthorizationService {
         
         if(this.loggedIn)
         {  this.idToken = user1.idToken;
-          console.log(this.loggedIn );
-          console.log(this.user.idToken);
+          // console.log(this.loggedIn );
+          // console.log(this.user.idToken);
           this.redirectToAppropriatePage();
         }
-        else
-          this.checkLoginStatus();
+        else{}
+          // this.checkLoginStatus();
          
           
     });
    }
+
+   checkIfUserNeedsRelogin()
+   {
+    this.authService.authState.subscribe(
+      (user1)=>{
+        this.user = user1;
+        this.loggedIn = (user1 != null);
+        
+        if(! this.loggedIn)
+        {
+         
+          this.router.navigate(['/login']);
+        }
+      }
+    );
+   }
+
 
    redirectToAppropriatePage()
    {
@@ -56,12 +73,14 @@ export class AuthorizationService {
           else{
               alert("Unauthorised user check the account you have logged in with");
               this.authService.signOut();
+              this.router.navigate(['/login']);
             }
                    
        },
        (error)=>{
         alert("Unauthorised user check the account you have logged in with");
         this.authService.signOut();
+        this.router.navigate(['/login']);
       }     
 
      );

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AnalyticsService } from '../analytics.service';
+import { AuthorizationService } from '../authorization.service';
 // import { GoogleChartsModule, GoogleChartComponent } from 'angular-google-charts';
 
 
@@ -12,13 +13,14 @@ import { AnalyticsService } from '../analytics.service';
 export class AnalyticsComponent implements OnInit {
 
   ngOnInit(): void {
+    this.authorizationService.checkIfUserNeedsRelogin();
   }
 
   
 
  
 
-  constructor(private analyticsService : AnalyticsService) { }
+  constructor(private analyticsService : AnalyticsService,public authorizationService : AuthorizationService) { }
   
   public title = 'Angular Charts';
 

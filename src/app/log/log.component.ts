@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LogService } from '../log.service';
 import { OnboardLogClass } from '../onboardLogClass';
+import { AuthorizationService } from '../authorization.service';
 
 @Component({
   selector: 'app-log',
@@ -9,9 +10,11 @@ import { OnboardLogClass } from '../onboardLogClass';
 })
 export class LogComponent implements OnInit {
 
-  constructor(public logService: LogService) { }
+  constructor(public logService: LogService, public authorizationService : AuthorizationService) { }
 
   ngOnInit(): void {
+    this.authorizationService.checkIfUserNeedsRelogin();
+
   }
 
   public onboardLogList: any;
@@ -57,6 +60,13 @@ export class LogComponent implements OnInit {
 
   searchAllLogByEmployeeId() {
     this.logListFlag = false;
+    if(this.onboardLogPlaceholder.emp_id == 0)
+    {
+      alert("enter required details");
+      return;
+    }
+
+
     this.logService.getAllLogByEmployeeId(this.onboardLogPlaceholder.emp_id).subscribe(
       (listOfLog) => {
         console.log(this.onboardLogList)
@@ -75,6 +85,12 @@ export class LogComponent implements OnInit {
 
   searchAllLogByDemandId() {
     this.logListFlag = false;
+    if(this.onboardLogPlaceholder.dem_id == 0)
+    {
+      alert("enter required details");
+      return;
+    }
+
     this.logService.getAllLogByDemandId(this.onboardLogPlaceholder.dem_id).subscribe(
       (listOfLog) => {
         console.log(this.onboardLogList)
@@ -90,9 +106,42 @@ export class LogComponent implements OnInit {
     );
   }
 
+  searchAllLogByOnboardId() {
+    this.logListFlag = false;
+    if(this.onboardLogPlaceholder.onb_id == 0)
+    {
+      alert("enter required details");
+      return;
+    }
+    this.logService.getAllLogByOnboardId(this.onboardLogPlaceholder.onb_id).subscribe(
+      (listOfLog) => {
+        console.log(this.onboardLogList)
+        this.logListFlag = true;
+        this.onboardLogList = listOfLog;
+
+
+      },
+      (error) => {
+        alert("No Logs Found")
+      }
+
+    );
+  }
+
+
+
+
+
 
   searchAllLogByEmployeeIdAndDemandId() {
     this.logListFlag = false;
+    if(this.onboardLogPlaceholder.emp_id == 0 || this.onboardLogPlaceholder.dem_id == 0 )
+    {
+      alert("enter required details");
+      return;
+    }
+
+
     this.logService.getAllLogByEmployeeIdAndDemandId(this.onboardLogPlaceholder.emp_id, this.onboardLogPlaceholder.dem_id).subscribe(
       (listOfLog) => {
         console.log(this.onboardLogList)
@@ -115,6 +164,12 @@ export class LogComponent implements OnInit {
 
   searchAllLogByOperator() {
     this.logListFlag = false;
+    if(this.onboardLogPlaceholder.operator == null)
+    {
+      alert("enter required details");
+      return;
+    }
+
     this.logService.getAllLogByOperator(this.onboardLogPlaceholder.operator).subscribe(
       (listOfLog) => {
         console.log(this.onboardLogList)
@@ -137,6 +192,12 @@ export class LogComponent implements OnInit {
 
   searchAllLogByOperation() {
     this.logListFlag = false;
+    if(this.onboardLogPlaceholder.operation == null)
+    {
+      alert("enter required details");
+      return;
+    }
+
     this.logService.getAllLogByOperation(this.onboardLogPlaceholder.operation).subscribe(
       (listOfLog) => {
         console.log(this.onboardLogList)
@@ -158,6 +219,11 @@ export class LogComponent implements OnInit {
 
   searchAllLogBetweenDate() {
     this.logListFlag = false;
+    if(this.date1 == null || this.date2 == null)
+    {
+      alert("enter required details");
+      return;
+    }
     this.logService.getAllLogBetweenDate(this.date1, this.date2).subscribe(
       (listOfLog) => {
         console.log(this.onboardLogList)

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthorizationService } from '../authorization.service';
 
 @Component({
   selector: 'app-manager-home',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManagerHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authorizationService : AuthorizationService) { }
 
   ngOnInit(): void {
+
+    this.authorizationService.checkIfUserNeedsRelogin();
   }
 
 }

@@ -5,6 +5,12 @@
             <button class=log-search-button (click)=searchAllLog()>Search</button><br>
         </li> 
 
+        <li> Search For Logs with Onboard Id :
+            <input  [(ngModel)]="onboardLogPlaceholder.onb_id" placeholder='onboard id' />
+                    
+            <button class=log-search-button (click)=searchAllLogByOnboardId()>Search</button><br>
+        </li>
+
         <li> Search For Logs with Employee Id :
             <input  [(ngModel)]="onboardLogPlaceholder.emp_id" placeholder='employee id' />
                     
