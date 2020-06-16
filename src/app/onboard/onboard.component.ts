@@ -290,9 +290,9 @@ export class OnboardComponent implements OnInit {
 
   add(){
     this.resetAllFlags();
-    if(this.onboardPlaceHolder.start_date == null || this.onboardPlaceHolder.eta_of_completion == null
-         || this.onboardPlaceHolder.bgc_status == null || this.onboardPlaceHolder.dem_id == 0
-         || this.onboardPlaceHolder.emp_id == 0 || this.onboardPlaceHolder.onboarding_status == null)
+    if(this.onboardCommunication.start_date == null || this.onboardCommunication.eta_of_completion == null
+         || this.onboardCommunication.bgc_status == null || this.onboardCommunication.dem_id == 0
+         || this.onboardCommunication.emp_id == 0 || this.onboardCommunication.onboarding_status == null)
     {
         alert("Enter Requited Details");
         return;

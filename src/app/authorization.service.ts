@@ -35,7 +35,7 @@ export class AuthorizationService {
         if(this.loggedIn)
         {  this.idToken = user1.idToken;
           // console.log(this.loggedIn );
-          // console.log(this.user.idToken);
+          console.log(this.user.idToken);
           this.redirectToAppropriatePage();
         }
         else{}
