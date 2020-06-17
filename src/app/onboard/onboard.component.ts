@@ -71,6 +71,9 @@ export class OnboardComponent implements OnInit {
   {
     this.resetAllFlags();
     this.addFlag=true;
+    this.onboardCommunication.onb_id = 0;
+    this.onboardCommunication.dem_id = 0;
+    this.onboardCommunication  = new OnboardClass(); 
   }
 
   // ################# list Result
@@ -129,10 +132,11 @@ export class OnboardComponent implements OnInit {
         alert("Enter Requited Details");
         return;
     }
-    
+      console.log(this.onboardPlaceHolder.eta_of_completion);
       this.onboardService.getAllOnboardByEtaOfCompletion( this.onboardPlaceHolder.eta_of_completion ).subscribe(
         (listOfOnboard)=>
         {
+
             this.listFlag=true;
             this.onboardList = listOfOnboard;
             console.log(this.onboardList);
@@ -150,7 +154,7 @@ export class OnboardComponent implements OnInit {
   searchByOnboardingStatus()
   {
     this.resetAllFlags();
-    if(this.onboardPlaceHolder.onboarding_status == null)
+    if(this.onboardPlaceHolder.onboarding_status == null || this.onboardPlaceHolder.onboarding_status == "")
     {
         alert("Enter Requited Details");
         return;
@@ -175,9 +179,9 @@ export class OnboardComponent implements OnInit {
   searchByBgcStatus()
   {
     this.resetAllFlags();
-    if(this.onboardPlaceHolder.bgc_status == null)
+    if(this.onboardPlaceHolder.bgc_status == null || this.onboardPlaceHolder.bgc_status == "")
     {
-        alert("Enter Requited Details");
+        alert("Enter Required Details");
         return;
     }
     
@@ -251,12 +255,15 @@ export class OnboardComponent implements OnInit {
     this.elementFlag=true;
      console.log(this.onboardCommunication.start_date);
      this.onboardService.putOnboard(this.onboardCommunication).subscribe(
-       (data)=>{
-          if(data==1)
+      (onboard: OnboardInterface)=>{
+        this.elementFlag=true
+        this.onboardCommunication = onboard;
+      
+          if(onboard!= null || onboard != undefined)
             this.operationSuccessfulFlag=true;
           else
             this.operationFailedFlag=true;
-            
+           
 
        },
        (error)=>{
@@ -272,12 +279,15 @@ export class OnboardComponent implements OnInit {
     this.elementFlag=true;
      console.log(this.onboardCommunication.start_date);
      this.onboardService.deleteOnboard(this.onboardCommunication).subscribe(
-       (data)=>{
-          if(data==1)
+      (onboard: OnboardInterface)=>{
+        this.elementFlag=true
+        this.onboardCommunication = onboard;
+      
+          if(onboard!= null || onboard != undefined)
             this.operationSuccessfulFlag=true;
           else
             this.operationFailedFlag=true;
-            
+           
 
        },
        (error)=>{
@@ -289,6 +299,9 @@ export class OnboardComponent implements OnInit {
   }
 
   add(){
+    
+
+
     this.resetAllFlags();
     if(this.onboardCommunication.start_date == null || this.onboardCommunication.eta_of_completion == null
          || this.onboardCommunication.bgc_status == null || this.onboardCommunication.dem_id == 0
@@ -302,8 +315,11 @@ export class OnboardComponent implements OnInit {
     this.addFlag=true;
      console.log(this.onboardCommunication.start_date);
      this.onboardService.addOnboard(this.onboardCommunication).subscribe(
-       (data)=>{
-          if(data==1)
+      (onboard: OnboardInterface)=>{
+        
+        this.onboardCommunication = onboard;
+      
+          if(onboard!= null || onboard != undefined)
             this.operationSuccessfulFlag=true;
           else
             this.operationFailedFlag=true;

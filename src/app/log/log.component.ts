@@ -208,7 +208,8 @@ export class LogComponent implements OnInit {
 
       },
       (error) => {
-        alert(error.error.message)
+        alert(error.error.message);
+        
       }
 
     );
