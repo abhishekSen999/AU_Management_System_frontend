@@ -53,6 +53,7 @@ export class LogComponent implements OnInit {
 
       },
       (error) => {
+        alert(error.error.message);
       }
 
     );
@@ -76,7 +77,7 @@ export class LogComponent implements OnInit {
 
       },
       (error) => {
-        alert("No Logs Found")
+        alert(error.error.message)
       }
 
     );
@@ -100,7 +101,7 @@ export class LogComponent implements OnInit {
 
       },
       (error) => {
-        alert("No Logs Found")
+        alert(error.error.message)
       }
 
     );
@@ -122,7 +123,7 @@ export class LogComponent implements OnInit {
 
       },
       (error) => {
-        alert("No Logs Found")
+        alert(error.error.message)
       }
 
     );
@@ -151,7 +152,7 @@ export class LogComponent implements OnInit {
 
       },
       (error) => {
-        alert("No Logs Found")
+        alert(error.error.message)
       }
 
     );
@@ -179,7 +180,7 @@ export class LogComponent implements OnInit {
 
       },
       (error) => {
-        alert("No Logs Found")
+        alert(error.error.message)
       }
 
     );
@@ -207,7 +208,7 @@ export class LogComponent implements OnInit {
 
       },
       (error) => {
-        alert("No Logs Found")
+        alert(error.error.message)
       }
 
     );
@@ -233,7 +234,7 @@ export class LogComponent implements OnInit {
 
       },
       (error) => {
-        alert("No Logs Found")
+        alert(error.error.message)
       }
 
     );

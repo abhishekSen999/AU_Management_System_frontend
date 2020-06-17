@@ -63,7 +63,7 @@ export class OnboardComponent implements OnInit {
   ngOnInit(): void {
 
     this.authorizationService.checkIfUserNeedsRelogin();
-    console.log("here");
+    
 
   }
 
@@ -90,7 +90,7 @@ export class OnboardComponent implements OnInit {
         {
           this.resetAllFlags();
           this.noOboardsPresentFlag=true;
-          alert("No Onboards Found");
+          alert(error.error.message);
         }
       );
   }
@@ -116,7 +116,7 @@ export class OnboardComponent implements OnInit {
         {
           this.resetAllFlags();
           this.noOboardsPresentFlag=true;
-          alert("No Onboards Found");
+          alert(error.error.message);
         }
       );
   }
@@ -141,7 +141,7 @@ export class OnboardComponent implements OnInit {
         {
           this.resetAllFlags();
           this.noOboardsPresentFlag=true;
-          alert("No Onboards Found");
+          alert(error.error.message);
         }
       );
   }
@@ -167,7 +167,7 @@ export class OnboardComponent implements OnInit {
         {
           this.resetAllFlags();
           this.noOboardsPresentFlag=true;
-          alert("No Onboards Found");
+          alert(error.error.message);
         }
       );
   }
@@ -192,7 +192,7 @@ export class OnboardComponent implements OnInit {
         {
           this.resetAllFlags();
           this.noOboardsPresentFlag=true;
-          alert("No Onboards Found");
+          alert(error.error.message);
         }
       );
   }
@@ -218,7 +218,7 @@ export class OnboardComponent implements OnInit {
       (error)=>{
         this.resetAllFlags();
         this.noOboardsPresentFlag=true;
-        alert("No Onboards Found");
+        alert(error.error.message);
       })
   }
 
@@ -240,7 +240,7 @@ export class OnboardComponent implements OnInit {
       (error)=>{
         this.resetAllFlags();
           this.noOboardsPresentFlag=true;
-          alert("No Onboards Found");
+          alert(error.error.message);
       })
   }
 
@@ -260,7 +260,7 @@ export class OnboardComponent implements OnInit {
 
        },
        (error)=>{
-          alert(error.error);
+          alert(error.error.message);
          this.operationFailedFlag=true;
         }
      );
@@ -281,7 +281,7 @@ export class OnboardComponent implements OnInit {
 
        },
        (error)=>{
-         alert(error.error);
+         alert(error.error.message);
          this.operationFailedFlag=true;
         }
      );
@@ -311,7 +311,8 @@ export class OnboardComponent implements OnInit {
 
        },
        (error)=>{
-         alert(error.error);
+         console.log(error);
+         alert(error.error.message);
          this.operationFailedFlag=true;
         }
      );

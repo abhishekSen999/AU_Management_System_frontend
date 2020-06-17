@@ -57,6 +57,9 @@ export class AuthorizationService {
          
           this.router.navigate(['/login']);
         }
+      },
+      (error)=>{
+        this.router.navigate(['/login']);
       }
     );
    }
