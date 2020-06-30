@@ -56,9 +56,9 @@ export class OnboardService {
     return this.http.get(`${this.url}/manager/onboard/emp_id=${emp_id}&dem_id=${dem_id}`);
   } 
 
-  putOnboard( onboard: OnboardInterface )
+  updateOnboard( onboard: OnboardInterface )
   {
-    return this.http.put(`${this.url}/manager/onboard/`,onboard);
+    return this.http.post(`${this.url}/manager/onboard/`,onboard);
     
   }
 
@@ -69,7 +69,7 @@ export class OnboardService {
 
   addOnboard(onboard: OnboardInterface)
   {
-    return this.http.post(`${this.url}/manager/onboard/`,onboard);
+    return this.http.put(`${this.url}/manager/onboard/`,onboard);
   }
 
 

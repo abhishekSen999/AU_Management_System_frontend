@@ -254,7 +254,7 @@ export class OnboardComponent implements OnInit {
     this.resetAllFlags();
     this.elementFlag=true;
      console.log(this.onboardCommunication.start_date);
-     this.onboardService.putOnboard(this.onboardCommunication).subscribe(
+     this.onboardService.updateOnboard(this.onboardCommunication).subscribe(
       (onboard: OnboardInterface)=>{
         this.elementFlag=true
         this.onboardCommunication = onboard;

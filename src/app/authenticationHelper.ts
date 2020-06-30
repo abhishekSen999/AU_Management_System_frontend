@@ -12,7 +12,7 @@ export class AuthenticationHelper implements HttpInterceptor{
 
     intercept(request: HttpRequest <any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let idToken = this.authorizationService.getIdToken();
-        console.log(" get request intercepted ");
+        console.log(" request intercepted ");
         // console.log(`Bearer ${idToken}`);
         request = request.clone({
             setHeaders: {
